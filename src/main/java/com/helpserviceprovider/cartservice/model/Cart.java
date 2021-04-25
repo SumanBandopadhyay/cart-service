@@ -1,10 +1,12 @@
 package com.helpserviceprovider.cartservice.model;
 
+import com.helpserviceprovider.cartservice.dto.CartDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,8 +15,13 @@ import java.util.List;
 @Builder
 public class Cart {
 
-    private String customerId;
+  public Cart(String customerId, CartDto cartDto) {
+    this.customerId = customerId;
+    this.productIds = new ArrayList<>();
+    this.productIds.addAll(cartDto.getProducts());
+  }
 
-    private List<String> productIds;
+  private String customerId;
 
+  private List<String> productIds;
 }
